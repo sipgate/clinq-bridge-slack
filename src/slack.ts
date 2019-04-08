@@ -17,7 +17,7 @@ export const handleCallEvent = async ({ apiUrl }: Config, event: CallEvent) => {
       direction === CallDirection.IN ? "eingehender" : "ausgehender"
     } Anruf in CLINQ`,
     username: "CLINQ Bot",
-    icon_url: "https://www.clinq.app/icon.png?version=2",
+    icon_url: "https://www.clinq.app/slack_bot_icon.png",
     attachments: [
       {
         author_name: channel.name,
@@ -39,7 +39,7 @@ export const handleCallEvent = async ({ apiUrl }: Config, event: CallEvent) => {
         ],
         color: "#00cea6",
         footer: "CLINQ Bot",
-        footer_icon: "https://www.clinq.app/icon.png?version=2",
+        footer_icon: "https://www.clinq.app/slack_bot_icon.png",
         ts: String(event.start / 1000)
       }
     ]
@@ -55,12 +55,12 @@ export const handleConnectedEvent = async ({ apiUrl }: Config) => {
   await webhook.send({
     text: "CLINQ Integration hinzugefügt :ok_hand::tada:",
     username: "CLINQ Bot",
-    icon_url: "https://www.clinq.app/icon.png?version=2",
+    icon_url: "https://www.clinq.app/slack_bot_icon.png",
     attachments: [
       {
         color: "#00cea6",
         footer: "CLINQ Bot",
-        footer_icon: "https://www.clinq.app/icon.png?version=2",
+        footer_icon: "https://www.clinq.app/slack_bot_icon.png",
         ts: String(Date.now() / 1000),
       }
     ]
