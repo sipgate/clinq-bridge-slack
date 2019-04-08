@@ -2,6 +2,8 @@ import { CallDirection, CallEvent, Config } from "@clinq/bridge";
 import { IncomingWebhook } from "@slack/webhook";
 import { parsePhoneNumber } from "./utils";
 
+
+
 export const handleCallEvent = async ({ apiUrl }: Config, event: CallEvent) => {
   const { channel, user, from, to, direction } = event;
   const contact = parsePhoneNumber(direction === CallDirection.IN ? from : to);
@@ -43,3 +45,27 @@ export const handleCallEvent = async ({ apiUrl }: Config, event: CallEvent) => {
     ]
   });
 };
+
+
+
+export const handleConnectedEvent = async ({ apiUrl }: Config) => {
+
+  const webhook = new IncomingWebhook(apiUrl);
+
+  await webhook.send({
+    text: "CLINQ Integration hinzugefügt :ok_hand::tada:",
+    username: "CLINQ Bot",
+    icon_url: "https://www.clinq.app/icon.png",
+    attachments: [
+      {
+        color: "#00cea6",
+        footer: "CLINQ Bot",
+        footer_icon: "https://www.clinq.app/icon.png",
+        ts: String(Date.now() / 1000),
+      }
+    ]
+  });
+};
+
+
+//https://hooks.slack.com/services/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
