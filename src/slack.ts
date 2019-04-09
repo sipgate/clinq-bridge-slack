@@ -2,8 +2,6 @@ import { CallDirection, CallEvent, Config } from "@clinq/bridge";
 import { IncomingWebhook } from "@slack/webhook";
 import { parsePhoneNumber } from "./utils";
 
-
-
 export const handleCallEvent = async ({ apiUrl }: Config, event: CallEvent) => {
   const { channel, user, from, to, direction } = event;
   const contact = parsePhoneNumber(direction === CallDirection.IN ? from : to);
@@ -11,9 +9,7 @@ export const handleCallEvent = async ({ apiUrl }: Config, event: CallEvent) => {
   const webhook = new IncomingWebhook(apiUrl);
 
   await webhook.send({
-    text: `${
-      direction === CallDirection.IN ? ":calling:" : ":iphone:"
-    } Neuer ${
+    text: `${direction === CallDirection.IN ? ":calling:" : ":iphone:"} Neuer ${
       direction === CallDirection.IN ? "eingehender" : "ausgehender"
     } Anruf in CLINQ`,
     username: "CLINQ Bot",
@@ -35,7 +31,7 @@ export const handleCallEvent = async ({ apiUrl }: Config, event: CallEvent) => {
             title: "CLINQ Benutzer",
             value: `${user.firstName} ${user.lastName}`,
             short: true
-          },
+          }
         ],
         color: "#00cea6",
         footer: "CLINQ Bot",
@@ -46,10 +42,7 @@ export const handleCallEvent = async ({ apiUrl }: Config, event: CallEvent) => {
   });
 };
 
-
-
 export const handleConnectedEvent = async ({ apiUrl }: Config) => {
-
   const webhook = new IncomingWebhook(apiUrl);
 
   await webhook.send({
@@ -61,9 +54,8 @@ export const handleConnectedEvent = async ({ apiUrl }: Config) => {
         color: "#00cea6",
         footer: "CLINQ Bot",
         footer_icon: "https://www.clinq.app/slack_bot_icon.png",
-        ts: String(Date.now() / 1000),
+        ts: String(Date.now() / 1000)
       }
     ]
   });
 };
-
