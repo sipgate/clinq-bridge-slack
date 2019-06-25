@@ -19,6 +19,7 @@ export const parsePhoneNumber = (phoneNumber: string) => {
 
     return phoneUtil.format(parsedPhoneNumber, phoneNumberFormat);
   } catch (error) {
+    // tslint:disable-next-line:no-console
     console.warn("Could not format phone number", error);
     return phoneNumber;
   }
